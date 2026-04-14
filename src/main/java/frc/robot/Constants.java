@@ -21,6 +21,6 @@ public final class Constants {
     static final int kDriveRightMotor2 = 3;
 
     //Outake???
-    static final int kOutakeMotor = 4;
+    static final int kOuttakeMotor = 4;
 }
 

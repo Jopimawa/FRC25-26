@@ -20,8 +20,9 @@ public class OuttakeSubsystem extends SubsystemBase {
     public void stop() {
         m_outtakeMotor.stopMotor();
     } 
+
     public getTime() {
-        return v_time
+        return v_time;
     }
 
     @Override
