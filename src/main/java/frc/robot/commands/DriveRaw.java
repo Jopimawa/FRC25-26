@@ -1,11 +1,11 @@
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 
-public class Drive extends Command {
+public class DriveRaw extends Command {
     private final DriveSubsystem m_driveSubsystem;
     private final Joystick m_joystick;
 
-    public Drive(DriveSubsystem driveSubsystem, Joystick joystick) {
+    public DriveRaw(DriveSubsystem driveSubsystem, double x, double y) {
         m_driveSubsystem = driveSubsystem;
         m_joystick = joystick;
         
@@ -14,9 +14,7 @@ public class Drive extends Command {
 
     @Override
     public void execute() {
-        double speed = -m_joystick.getY(); // Joysticks often need to be inverted
-
-        m_driveSubsystem.arcadeDrive(speed, m_joystick.getX());
+        m_driveSubsystem.arcadeDrive(y, x));
     }
 
     @Override

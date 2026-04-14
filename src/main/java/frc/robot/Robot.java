@@ -37,11 +37,10 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-    }
+    Command auto = Commands.sequence(
+      new DriveRaw(m_robotContainer.getDrive(), 1,1).withTimeout(2);
+    );
+    command.schedule();
   }
 
 

@@ -12,43 +12,23 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 public class RobotContainer {
 
+  private final Joystick m_driverJoystick = new Joystick(0);
+
   private final DriveSubsystem m_drive = new DriveSubsystem();
+  private final OuttakeSubsystem m_outtake = new OuttakeSubsystem();
 
   public RobotContainer() {
     configureButtonBindings();
-    configureAutoChooser();
   }
 
+  public DriveSubsystem getDrive() {
+    return m_drive;
+  }
   private configureButtonBindings() {
+    m_drive.setDefaultCommand(new Drive(m_driveSubsystem, m_driverJoystick));
 
+    new JoystickButton(m_driverJoystick, 1)
+      .onTrue(new Outtake(m_outtake).withTimeout(OuttakeSubsystem::getTime));
   }
 
-  //
-  //Auto init (probably will be moved to a different file for org)
-  //
-
-  private final SendableChooser<Command> m_chooser = new SendableChooser<>();
-
-  private final Command m_simpleAuto = Commands.sequence(
-                                       Commands.run(() -> m_drive.tankDrive(1,1), m_drive)
-                                                   .withTimeout(3)
-                                       );
-
-  private final Command m_complexAuto = Commands.sequence(
-                                        Commands.run(() -> m_drive.tankDrive(1,1), m_drive)
-                                                   .withTimeout(3),
-                                        Commands.run(() -> m_drive.tankDrive(-1,-1), m_drive)
-                                                   .withTimeout(2)
-                                        );
-
-    private configureAutoChooser() {
-        m_chooser.setDefaultOption("Simple Auto", m_simpleAuto);
-        m_chooser.addOption("Complex Auto", m_complexAuto);
-
-        SmartDashboard.putData("Auto Modes", m_chooser);
-    }
-
-  public Command getAutonomousCommand() {
-        return m_chooser.getSelected();
-  }
 }

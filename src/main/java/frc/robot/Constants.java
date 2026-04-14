@@ -20,7 +20,7 @@ public final class Constants {
     static final int kDriveRightMotor1 = 2;
     static final int kDriveRightMotor2 = 3;
 
-    static final boolean kDriveRightInverted = false;
-    static final boolean kDriveLeftInverted = false;
+    //Outake???
+    static final int kOutakeMotor = 4;
 }
 
